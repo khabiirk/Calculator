@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<style>
+  container {
+    text-align: center;
+    height: 500px;
+    width: 500px;
+    border: 10px solid transparent;
+    margin: 50px 360px;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 25% 15% 15% 15% 15% 15%;
+    background: red;
+
+  }
+  #screen{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    border: solid;
+  }
+  #zero{
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+</style>
+<header>
+  </header>
+  <body>
+    <container>
+      <div id="screen">
+        Screen
+      </div value='clear'>
+      <button>
+        AC
+      </button>
+      <button value'sign'>
+        +/-
+      </button>
+      <button value='%'>
+        %
+      </button>
+      <button value='/' class = "operand">
+        /
+      </button>
+      <button value='7'>
+        7
+      </button>
+      <button value='8'>
+        8
+      </button>
+      <button value='9'>
+        9
+      </button>
+      <button value='x' class = "operand">
+        X
+      </button>
+      <button value='4'>
+        4
+      </button>
+      <button value='5'>
+        5
+      </button>
+      <button value='6'>
+        6
+      </button>
+      <button value='-' class = "operand">
+        -
+      </button>
+      <button value='1'>
+        1
+      </button>
+      <button value='2'>
+        2
+      </button>
+      <button value='3'>
+        3
+      </button>
+      <button value='+' class = "operand">
+        +
+      </button>
+      <button value="0" id="zero">
+        0
+      </button>
+      <button value=".">
+        .
+      </button>
+      <button value="=" class = 'equal'>
+        =
+      </button>
+    </container>
+    </body>
+    <script>
+      function display(s){
+        const screen = document.querySelector('#screen');
+        screen.textContent = s;
+
+
+      }
+
+      function add (n1, n2) {
+      	return n1+n2;
+
+      };
+
+      function subtract (n1, n2) {
+      	return n1 - n2;
+      };
+
+      function multiply(n1, n2){
+        return n1 *  n2;
+      };
+
+      function divide(n1, n2){
+        return n1 / n2;
+      };
+
+      function operate(op, n1, n2){
+        let result;
+        switch(op){
+          case '+':
+            return(add(n1, n2));
+          case '-':
+            return(subtract(n1, n2));
+          case '*':
+            return(multiply(n1, n2));
+          case '/':
+            return(divide(n1, n2));
+          default:
+            return "Error";
+
+        }
+      }
+      let o;
+      let n1;
+      let n2;
+      let temp = 0;
+      let but = document.querySelectorAll('button');
+      but.forEach(b => b.addEventListener('click', () => {
+        if(b.classList.contains('operand')){
+
+          o = b.value;
+
+        }
+        else{
+          if(n1 === undefined){
+            n1 = parseInt(b.value);
+            display(n1);
+          }
+          else if(o === undefined){
+            n1 = parseInt(n1.toString() + b.value);
+            display(n1);
+          }
+          else if(n2 === undefined){
+            n2 = parseInt(b.value);
+            display(n2);
+            temp = operate(o, n1, n2);
+          }
+          else if(n2 != undefined && o != undefined){
+            n2 = parseInt(n2.toString() + b.value);
+            display(n2);
+            temp = operate(o, n1, n2);
+          }
+          }
+        if(b.classList.contains('equal')){
+          display(temp);
+        }
+
+      }));
+
+
+
+
+
+    </script>
+
+</html>
