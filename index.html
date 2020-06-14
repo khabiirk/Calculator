@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Press+Start+2P">
 <style>
   container {
     font-size: 25px;
     text-align: center;
     height: 500px;
-    width: 500px;
+    width: 400px;
     border: 10px solid transparent;
     margin: 50px 360px;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-rows: 25% 15% 15% 15% 15% 15%;
-    background: red;
+    padding: 150px;
+    padding-bottom: 0px;
+
+
 
   }
+  .operand{
+    background: white;
+  }
   #screen{
+    overflow: hidden;
+    padding: 50px;
     grid-column-start: 1;
     grid-column-end: 5;
-    border: solid;
-    background: white;
+    border: solid ;
+    border-width: 2px;
+    background: #C5C6C7;
+    font-family: 'Press Start 2P';
   }
   #zero{
     grid-column-start: 1;
@@ -26,9 +38,35 @@
   }
   button{
     font-size: 25px;
+    background: #45A29E;
+    border-color: #1F2833;
   }
-  h1{
+  body{
+    background: #1F2833
 
+  }
+  button:hover{
+    background: #66FCF1;
+  }
+  .operand:hover{
+    background: #C5C6D0;
+  }
+  .AC{
+    background: white;
+  }
+  #c{
+    background: white;
+  }
+  #d{
+    background: white;
+  }
+  .equal{
+    background: white;
+  }
+  footer{
+    text-align: center;
+    color: white;
+    font-family: 'Press Start 2P';
   }
 </style>
 <header>
@@ -41,10 +79,10 @@
       <button value='clear' class ='AC'>
         AC
       </button>
-      <button value ='sign'>
+      <button value ='sign' id = 'c'>
         +/-
       </button>
-      <button value='%'>
+      <button value='%' id = 'd'>
         %
       </button>
       <button value='/' class = "operand">
@@ -97,6 +135,9 @@
       </button>
     </container>
     </body>
+    <footer>
+      By Khabiir Khan, 2020
+    </footer>
     <script>
       function display(s){
         const screen = document.querySelector('#screen');
@@ -186,7 +227,7 @@
 
           }
           else if(o === 'u'){
-          
+
             if(decimal){
               if(n1.toString().includes(".")){
                 n1 = parseFloat(n1.toString() + b.value);
